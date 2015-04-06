@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Basic to-do app in Backbone.js</title> 
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <section id="todoapp">
+    <header id="header">
+      <h1>Todos</h1>
+      <input id="new-todo" placeholder="What needs to be done?">
+       <div>
+        <a href="#/">show all</a> |
+        <a href="#/pending">show pending</a> |
+        <a href="#/completed">show completed</a>
+      </div>
+    </header>
+    <section id="main">
+      <ul id="todo-list"></ul>
+    </section>
+  </section>
+
+<!-- template --> 
+<script type="text/template" id="item-template">
+  <div class="view">
+    <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+    <label><%- title %></label>
+    <input class="edit" value="<%- title %>">
+    <button class="destroy">remove</button>
+  </div>
+
+</script>
+
+<!-- jQuery + Underscore + Backbone -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/underscore/underscore-min.js"></script>
+  <script src="bower_components/backbone/backbone.js"></script>
+  <!-- Firebase -->
+  <script src="bower_components/firebase/firebase.js"></script>
+  <!-- BackboneFire -->
+  <script src="bower_components/backbonefire/dist/backbonefire.min.js"></script> 
+  <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "firebase-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KatieLo/firebase-todo.git"
+  },
+  "author": "Katie Womersley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatieLo/firebase-todo/issues"
+  },
+  "homepage": "https://github.com/KatieLo/firebase-todo",
+  "dependencies": {
+    "bower": "^1.4.1"
+  }
+}
