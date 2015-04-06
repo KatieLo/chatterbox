@@ -7,11 +7,8 @@ var app = {}; // create namespace
 
 app.Todo = Backbone.Model.extend({  // class Todo extends backbone model. could also use: var Todo = Backbone.Model.extend({});
   defaults: {
-    title: '',
-    completed: false
-  },
-  toggle: function(){
-    this.save({ completed: !this.get('completed')});
+    title: '', 
+    author: 'anon'
   }
 });
 
@@ -25,15 +22,7 @@ app.Todo = Backbone.Model.extend({  // class Todo extends backbone model. could 
 
 app.TodoList = Backbone.Firebase.Collection.extend({
   model: app.Todo,
-  url: "https://boiling-inferno-6812.firebaseio.com/",
-  completed: function() {
-    return this.filter(function( todo ) {
-    return todo.get('completed');
-    });
-  },
-  remaining: function() {
-    return this.without.apply( this, this.completed() );
-  }
+  url: "https://boiling-inferno-6812.firebaseio.com/"
 });
 
 // instance of the Collection
@@ -45,7 +34,7 @@ app.todoList = new app.TodoList();
 
 // View for he individual todo item
 app.TodoView = Backbone.View.extend({
-  tagName: 'li', // el will be wrapped in <li></li>
+  tagName: 'p', // el will be wrapped in <li></li>
   template: _.template($('#item-template').html()),
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
@@ -60,7 +49,6 @@ app.TodoView = Backbone.View.extend({
     'dblclick label' : 'edit', 
     'keypress .edit' : 'updateOnEnter',
     'blur .edit' : 'close',
-    'click .toggle': 'toggleCompleted',
     'click .destroy': 'destroy'
   },
   edit: function(){
@@ -79,9 +67,6 @@ app.TodoView = Backbone.View.extend({
       this.close();
     }
   },
-  toggleCompleted: function(){  
-    this.model.toggle();
-  }, 
   destroy: function(){
     this.model.destroy();
   }
@@ -93,6 +78,7 @@ app.AppView = Backbone.View.extend({
   initialize: function () {
     this.input = this.$('#new-todo'); // input is a jQuery object from the form
     // when new elements are added to the collection render then with addOne
+    this.author = this.$('#new-author');
     app.todoList.on('add', this.addOne, this); // bind the object 'this' to the event add and the callback function addOne. The callback addOne will be executed on this when add event is triggered.
     app.todoList.on('reset', this.addAll, this); 
     app.todoList.fetch(); // Loads list from local storage
@@ -115,12 +101,6 @@ app.AppView = Backbone.View.extend({
     this.$('#todo-list').html(''); // clean the todo list
     // filter todo item list
     switch(window.filter){
-      case 'pending':
-        _.each(app.todoList.remaining(), this.addOne);
-       break;
-      case 'completed':
-        _.each(app.todoList.completed(), this.addOne);
-        break;
       default:
         app.todoList.each(this.addOne, this);
        break; 
@@ -129,7 +109,8 @@ app.AppView = Backbone.View.extend({
   newAttributes: function(){
     return {
       title: this.input.val().trim(),
-      completed: false
+      author: this.author.val().trim()
+
     }
   }
 });
