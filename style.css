@@ -1,3 +1,7 @@
+body {
+ 	margin-top: 70px;
+ }
+
  #todoapp ul {
       list-style-type: none; /* Hides bullet points from todo list */
 }
@@ -9,4 +13,78 @@
 }    
 #todo-list .editing input.edit {
   display: inline; /* Shows input text box when .editing*/
-}   
+}
+
+.navbar-brand {
+	font-size: 30px;
+}
+
+.form-control.small{
+	max-width: 33%;
+} 
+
+.form-control.medium{
+	max-width: 60%;
+}  
+
+.message {
+	position: relative;
+	max-width: 33%;
+}
+
+button.destroy {
+  position: absolute;
+  right: -36px;
+  top: 8px;
+}
+
+.bubble {
+	background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+background-image: -o-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.25, rgb(210,244,254)),
+	color-stop(1, rgb(149,194,253))
+);
+	border: solid 1px rgba(0, 0, 0, 0.5);
+	/* vendor rules */
+	border-radius: 20px;
+	/* vendor rules */
+	box-shadow: inset 0 5px 5px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+	/* vendor rules */
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	padding: 8px 30px;
+	position: relative;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+	width: auto;
+	max-width: 100%;
+	word-wrap: break-word;
+}
+
+.bubble:before, .bubble:after {
+	border-radius: 20px / 10px;
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+.bubble:before {
+	border: 10px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	left: -7px;
+	z-index: -2;
+}
+
+.bubble:after {
+	border: 8px solid transparent;
+	border-bottom-color: #d2f4fe;
+	bottom: 1px;
+	left: -5px;
+}

@@ -4,14 +4,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Basic to-do app in Backbone.js</title> 
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
 <body>
+<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Chatterbox</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
 
   <section id="todoapp">
     <header id="header">
-      <h1>Chatterbox</h1>
-      <h3>Double click to edit a sent message :)</h3>
+     
         <!--
         <div>
         <a href="#/">show all</a> |
@@ -22,28 +42,29 @@
       
     </header>
     <section id="main">
-       <input id="new-author" placeholder="Your name" >
+       <input id="new-author" placeholder="Your name" class="form-control small">
       <ul id="todo-list"></ul>
     </section>
 
-    <textarea id="new-todo" placeholder="Type your message here." rows="10" cols="50"></textarea>
-
+    <textarea id="new-todo" placeholder="Type your message here." rows="5" cols="80" class="form-control medium"></textarea>
+     <p>Double click to edit a sent message :)</p>
   </section>
 
 <!-- template --> 
 <script type="text/template" id="item-template">
   <div class="view">
-    <h6><%- author %>:</h6>
-    <p>
+    <h5><%- author %>:</h5>
+    <div class="message">
+    <p class="bubble">
       <%- title %>
-      <button class="destroy">x</button>
     </p>
+    <button class="destroy btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
     <input class="edit" value="<%- title %>">
-    
+    </div>
   </div>
 
 </script>
-
+</div> <!-- close container --> 
 
 
 <!-- jQuery + Underscore + Backbone -->
