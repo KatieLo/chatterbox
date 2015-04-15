@@ -2,6 +2,39 @@ body {
  	margin-top: 70px;
  }
 
+/*
+* Thanks to Daniel Perez Alvarez for this GitHub-style ribbon
+* Tutorial at http://unindented.org/articles/github-ribbon-using-css-transforms/
+*/
+.ribbon {
+  z-index: 1;
+  background-color: #5cb85c;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  right: -40px;
+  top: 30px;
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-box-shadow: 0 0 10px #888;
+     -moz-box-shadow: 0 0 10px #888;
+          box-shadow: 0 0 10px #888;
+}
+.ribbon a {
+  border: 1px solid #ADFF17;
+  color: #ADFF17;
+  display: block;
+  font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 1px 0;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 5px #444;
+}
+
  #todoapp ul {
       list-style-type: none; /* Hides bullet points from todo list */
       padding: 0;
@@ -23,6 +56,7 @@ body {
 }
 
 .navbar-inverse {
+  z-index: 0;
   background-color: #9BE220;
   border-color: #81CB00;
 }
