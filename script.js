@@ -34,7 +34,7 @@ app.todoList = new app.TodoList();
 
 // View for he individual todo item
 app.TodoView = Backbone.View.extend({
-  tagName: 'p', // el will be wrapped in <li></li>
+  tagName: 'p', // el will be wrapped in <p>
   template: _.template($('#item-template').html()),
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
@@ -46,7 +46,7 @@ app.TodoView = Backbone.View.extend({
     this.model.on('destroy', this.remove, this); // listen for destroy
   },
   events: { // bind functions to events
-    'dblclick label' : 'edit', 
+    'dblclick .bubble' : 'edit', 
     'keypress .edit' : 'updateOnEnter',
     'blur .edit' : 'close',
     'click .destroy': 'destroy'
@@ -92,6 +92,7 @@ app.AppView = Backbone.View.extend({
     }
     app.todoList.create(this.newAttributes());
     this.input.val(''); // clean input box
+    e.preventDefault();
   },
   addOne: function(todo){ // add todo to list
     var view = new app.TodoView({model: todo});
